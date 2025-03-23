@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Hoş Geldiniz, {{ kullanici_adi }}!</h1>
+
+    <h2>Siparişleriniz</h2>
+    {% if siparisler %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Sipariş ID</th>
+                    <th>Durum</th>
+                    <th>Ödeme Durumu</th>
+                    <th>Stok Miktarı</th>
+                    <th>Müşteri Tipi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for siparis in siparisler %}
+                    <tr>
+                        <td>{{ siparis.siparis_id }}</td>
+                        <td>{{ siparis.siparis_durumu }}</td>
+                        <td>{{ siparis.odeme_durumu }}</td>
+                        <td>{{ siparis.stok_miktari }}</td>
+                        <td>{{ siparis.musteri_tipi }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Herhangi bir siparişiniz yok.</p>
+    {% endif %}
+
+    <!-- JavaScript bağlantısı -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
